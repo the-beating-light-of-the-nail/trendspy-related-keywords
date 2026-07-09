@@ -30,6 +30,10 @@ class NotificationManager:
             wechat_success = self._send_wechat(subject, body, attachments)
             success = success and wechat_success
 
+        if method == 'local':
+            local_success = self._save_local(subject, body, attachments)
+            success = success and local_success
+
         return success
 
     def _send_email(self, subject, body, attachments=None):
@@ -275,6 +279,32 @@ class NotificationManager:
                     return False
         
         return False
+
+    def _save_local(self, subject, body, attachments=None):
+        """将通知保存到本地文件"""
+        try:
+            from datetime import datetime
+            # 保存通知正文
+            text = self._html_to_text(body)
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            filename = f"notification_{timestamp}.txt"
+            with open(filename, 'w', encoding='utf-8') as f:
+                f.write(f"{'='*60}\n")
+                f.write(f"  {subject}\n")
+                f.write(f"{'='*60}\n\n")
+                f.write(text)
+                f.write(f"\n\n{'='*60}\n")
+                f.write(f"生成时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+            logging.info(f"Notification saved to local file: {filename}")
+            
+            # 如果有附件，记录到日志
+            if attachments:
+                for filepath in attachments:
+                    logging.info(f"Related attachment: {filepath}")
+            return True
+        except Exception as e:
+            logging.error(f"Failed to save notification locally: {str(e)}")
+            return False
 
     def _html_to_text(self, html):
         """简单的HTML到纯文本转换"""

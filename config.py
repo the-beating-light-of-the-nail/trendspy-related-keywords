@@ -6,7 +6,7 @@ load_dotenv()
 
 # Notification Configuration
 NOTIFICATION_CONFIG = {
-    'method': 'email',  # 可选值: 'email', 'wechat', 'both'
+    'method': 'local',  # 可选值: 'email', 'wechat', 'both', 'local'
     'wechat_receiver': os.getenv('TRENDS_WECHAT_RECEIVER', ''),  # 微信接收者的备注名或微信号
 }
 
@@ -21,12 +21,15 @@ EMAIL_CONFIG = {
 
 # Keywords to monitor
 KEYWORDS = [
-   
     "Image",
     "Video",
     "Music",
     "Voice",
     "Text",
+    "恋と深空",
+    "LnD",
+    "LADS",
+    "Love and Deepspace",
     # Add more keywords as needed
 ]
 

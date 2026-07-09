@@ -38,9 +38,7 @@ class WeChatManager:
         # 设置日志
         self._setup_logging()
         
-        # 初始化时尝试使用现有的登录状态
-        if self._has_wechat:
-            self._try_load_login_status()
+        # 注意：不在初始化时尝试登录，改为使用时延迟登录
     
     def _setup_logging(self):
         """设置日志配置"""
