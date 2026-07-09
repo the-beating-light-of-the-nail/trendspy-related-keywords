@@ -27,9 +27,8 @@ KEYWORDS = [
     "Voice",
     "Text",
     "恋と深空",
-    "LnD",
-    "LADS",
     "Love and Deepspace",
+    "Moonlight Peaks",
     # Add more keywords as needed
 ]
 
