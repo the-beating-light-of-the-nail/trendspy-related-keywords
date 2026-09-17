@@ -42,4 +42,4 @@ Thumbs.db
 itchat.pkl
 QR.png
 .history
-venv/
+venv/notification_*.txt
